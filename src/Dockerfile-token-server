@@ -1,0 +1,18 @@
+# Use an official Python runtime as a parent image
+FROM python:3.11-slim-buster
+
+# Set the working directory in the container to /app
+WORKDIR /app
+
+# Add the current directory contents into the container at /app
+COPY ./redis_middleware /app/redis_middleware
+COPY ./requirement-token-server.txt ./requirement-token-server.txt
+
+# Install any needed packages specified in requirements.txt
+RUN pip install --no-cache-dir -r requirement-token-server.txt
+
+# Make port 50051 available to the world outside this container
+EXPOSE 50051
+
+# Run the command to start the gRPC server
+CMD ["python", "redis_middleware/server.py"]
