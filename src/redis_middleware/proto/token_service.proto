@@ -1,0 +1,18 @@
+// proto file: token_service.proto
+
+syntax = "proto3";
+
+service TokenService {
+  rpc StoreToken (StoreTokenRequest) returns (StoreTokenResponse) {}
+}
+
+message StoreTokenRequest {
+  string token_uuid = 1;
+  string user_uuid = 2;
+  string payload = 3;
+  string ip_address = 4;
+}
+
+message StoreTokenResponse {
+  bool success = 1;
+}
